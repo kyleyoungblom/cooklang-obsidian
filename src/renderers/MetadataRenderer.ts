@@ -28,13 +28,7 @@ export class MetadataRenderer {
             return; // No metadata to render
         }
 
-        // Add the metadata header
-        container.createEl('h2', {
-            cls: 'metadata-header',
-            text: this.settings.metadataLabel || 'Metadata'
-        });
-
-        // Create metadata list
+        // Create metadata list (no heading)
         const ul = container.createEl('ul', { cls: 'metadata' });
 
         Object.entries(metadata).forEach(([key, value]) => {

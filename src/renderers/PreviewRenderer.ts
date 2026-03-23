@@ -62,12 +62,19 @@ export class PreviewRenderer {
             this.renderMainImage(container, file);
         }
 
-        // Render all sections in order
+        // Render metadata (full-width, above the two-column layout)
         this.metadataRenderer.render(recipe, container);
-        this.ingredientRenderer.render(recipe, container, checkedIngredients, onIngredientToggle);
-        this.cookwareRenderer.render(recipe, container);
-        this.timerListRenderer.render(recipe, container);
-        this.methodStepsRenderer.render(recipe, container);
+
+        // Create two-column body: sidebar (ingredients) + main (directions)
+        const bodyWrapper = container.createDiv({ cls: 'cook-recipe-body' });
+
+        const sidebar = bodyWrapper.createDiv({ cls: 'cook-sidebar' });
+        this.ingredientRenderer.render(recipe, sidebar, checkedIngredients, onIngredientToggle);
+        this.cookwareRenderer.render(recipe, sidebar);
+        this.timerListRenderer.render(recipe, sidebar);
+
+        const main = bodyWrapper.createDiv({ cls: 'cook-main' });
+        this.methodStepsRenderer.render(recipe, main);
     }
 
     /**
