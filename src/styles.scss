@@ -16,10 +16,25 @@
     margin-right: auto;
   }
 
+  // Header: image left, metadata right
+  .cook-header {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+  }
+
   .main-image {
-    width: 100vw;
-    aspect-ratio: 1.618;
+    width: 200px;
+    height: 200px;
     object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .cook-header-meta {
+    flex: 1;
+    min-width: 0;
   }
 
   .method-image {

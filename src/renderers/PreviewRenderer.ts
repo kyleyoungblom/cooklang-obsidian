@@ -57,13 +57,15 @@ export class PreviewRenderer {
         // Clear container
         container.empty();
 
-        // Render main image if enabled and exists
+        // Header row: image (left) + metadata (right)
+        const header = container.createDiv({ cls: 'cook-header' });
+
         if (this.settings.showImages && file) {
-            this.renderMainImage(container, file);
+            this.renderMainImage(header, file);
         }
 
-        // Render metadata (full-width, above the two-column layout)
-        this.metadataRenderer.render(recipe, container);
+        const metaCol = header.createDiv({ cls: 'cook-header-meta' });
+        this.metadataRenderer.render(recipe, metaCol);
 
         // Create two-column body: sidebar (ingredients) + main (directions)
         const bodyWrapper = container.createDiv({ cls: 'cook-recipe-body' });
